@@ -1,0 +1,22 @@
+Get user info
+GET https://virginpulse.freshservice.com/api/v2/requesters?query="samaccountname:'{{asset.last_login_by}}'"&include_agents=true
+
+Update asset
+PUT https://virginpulse.freshservice.com/api/v2/assets/{{asset.display_id}}
+Body:
+{
+"user_id": {{P1.root.requesters.requesters_object.id|remove: "["|remove:"]"}},
+"department_id": {{P1.root.requesters.requesters_object.department_ids|remove: "["|remove:"]"}},
+"location_id": {{P1.root.requesters.requesters_object.location_id|remove: "["|remove:"]"}}
+}
+
+Update asset and Use state:
+PUT https://virginpulse.freshservice.com/api/v2/assets/{{asset.display_id}}
+{
+"user_id": {{P1.root.requesters.requesters_object.id|remove: "["|remove:"]"}},
+"department_id": {{P1.root.requesters.requesters_object.department_ids|remove: "["|remove:"]"}},
+"location_id": {{P1.root.requesters.requesters_object.location_id|remove: "["|remove:"]"}},
+"type_fields": {
+    "asset_state_75483": "In Use"
+ }
+}
